@@ -496,9 +496,7 @@ require('lazy').setup({
   require 'plugins.neo-tree',
   require 'plugins.gitsigns',
   require 'plugins.which-key',
-
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
+  require 'plugins.obsidian',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
