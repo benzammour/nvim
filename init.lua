@@ -497,6 +497,8 @@ require('lazy').setup({
   require 'plugins.gitsigns',
   require 'plugins.which-key',
   require 'plugins.obsidian',
+  require 'plugins.render-markdown',
+  require 'plugins.vim-markdown',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
