@@ -500,6 +500,7 @@ require('lazy').setup({
   require 'plugins.vim-markdown',
   require 'plugins.zen-mode',
   require 'plugins.pastify',
+  require 'plugins.lazygit',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
