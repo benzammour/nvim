@@ -501,6 +501,7 @@ require('lazy').setup({
   require 'plugins.zen-mode',
   require 'plugins.pastify',
   require 'plugins.lazygit',
+  require 'plugins.multicursors',
   require 'plugins.alpha',
 }, {
   ui = {
