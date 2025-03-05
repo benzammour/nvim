@@ -31,3 +31,25 @@ vim.keymap.set('n', '<leader>yp', function()
     vim.notify('No file is currently focused.', vim.log.levels.WARN)
   end
 end, { desc = "Copy the current file's directory to clipboard" }) -- Copy the current file's directory to clipboard
+
+-- Function to format JSON in the current buffer
+vim.keymap.set('v', '<leader>jf', function()
+  local start_pos = vim.api.nvim_buf_get_mark(0, '<')
+  local end_pos = vim.api.nvim_buf_get_mark(0, '>')
+  local text = vim.api.nvim_buf_get_lines(0, start_pos[1] - 1, end_pos[1], false)
+
+  local joined_text = table.concat(text, '\n')
+
+  local success, parsed = pcall(vim.fn.json_decode, joined_text)
+  if not success then
+    vim.notify('Invalid JSON detected, could not format', vim.log.levels.ERROR)
+    return
+  end
+
+  local pretty_json = vim.fn.json_encode(parsed)
+
+  -- json_encode produces compact json, so we reformat for pretty printing
+  pretty_json = vim.fn.system("jq '.'", pretty_json)
+
+  vim.api.nvim_buf_set_lines(0, start_pos[1] - 1, end_pos[1], false, vim.split(pretty_json, '\n'))
+end, { noremap = true, silent = true })
