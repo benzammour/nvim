@@ -2,6 +2,8 @@ require 'options'
 require 'keymaps'
 require 'autocmds'
 
+vim.o.termguicolors = true
+
 -- Highlight when yanking
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
