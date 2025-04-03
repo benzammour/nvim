@@ -296,7 +296,7 @@ require('lazy').setup({
         c = { 'clang_format' },
         cpp = { 'clang_format' },
         lua = { 'stylua' },
-        python = { 'ruff', 'black', stop_after_first = true },
+        python = { 'black', stop_after_first = true },
         tex = { 'latexindent' },
       },
     },
