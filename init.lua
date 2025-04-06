@@ -298,6 +298,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         python = { 'black', stop_after_first = true },
         tex = { 'latexindent' },
+        yaml = { 'prettier' },
       },
     },
   },
