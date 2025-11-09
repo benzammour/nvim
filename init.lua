@@ -1,13 +1,12 @@
 require 'options'
 require 'keymaps'
-require 'autocmds'
 
 vim.o.termguicolors = true
 
 -- Highlight when yanking
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('s3mme-highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -28,28 +27,24 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   require 'plugins.sleuth', -- Detect tabstop and shiftwidth automatically
   require 'plugins.telescope', -- Fuzzy Search
-  require 'plugins.lazydev', -- LSP Plugins
-  require 'plugins.nvim-cmp', -- Autocomplete
   require 'plugins.conform', -- Autoformat
-  require 'plugins.catppuccin', -- Colorscheme
+  require 'plugins.color', -- Colorscheme
   require 'plugins.todo-comments', -- Highlight TODO/NOTE/FIXME etc in code
-  require 'plugins.mini',
   require 'plugins.treesitter',
-  require 'plugins.dap-debug',
-  require 'plugins.indent_line',
-  require 'plugins.lint',
-  require 'plugins.autopairs',
-  require 'plugins.neo-tree',
-  require 'plugins.gitsigns',
-  require 'plugins.which-key',
-  require 'plugins.obsidian',
-  require 'plugins.render-markdown',
-  require 'plugins.vim-markdown',
-  require 'plugins.zen-mode',
-  require 'plugins.pastify',
-  require 'plugins.lazygit',
-  require 'plugins.multicursors',
-  require 'plugins.alpha',
+  require 'plugins.indent_line', -- displays indentation guides
+  require 'plugins.autopairs', -- matches open brackets
+  require 'plugins.neo-tree', -- tree file system
+  require 'plugins.gitsigns', -- git plugin
+  require 'plugins.which-key', -- display info while pressing keys
+  require 'plugins.obsidian', -- obsidian x nvim companion
+  require 'plugins.zen-mode', -- sometimes you need to focus
+  require 'plugins.pastify', -- paste images into markdown
+  require 'plugins.lazygit', -- lazygit integration
+  require 'plugins.alpha', -- dashboard
+  require 'plugins.mason', -- Package Manager for Parsers, LSPs etc.
+  require 'plugins.lsp', -- Configure LSPs
+  require 'plugins.nvim-cmp', -- Autocomplete plugin, also included in lsp.lua as a dependency. Take out?
+  require 'plugins.lualine', -- Autocomplete plugin, also included in lsp.lua as a dependency. Take out?
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -72,5 +67,6 @@ require('lazy').setup({
   },
 })
 
+require 'autocmds'
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

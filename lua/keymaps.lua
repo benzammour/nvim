@@ -24,6 +24,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.keymap.set('n', '<leader>ll', '<cmd>Lazy<cr>', { desc = 'Open Lazy Package Manager Menu' })
 
+-- Copy the current file's directory to clipboard
 vim.keymap.set('n', '<leader>yp', function()
   local file_dir = vim.fn.expand '%:p:h'
   if file_dir ~= '' then
@@ -32,7 +33,7 @@ vim.keymap.set('n', '<leader>yp', function()
   else
     vim.notify('No file is currently focused.', vim.log.levels.WARN)
   end
-end, { desc = "Copy the current file's directory to clipboard" }) -- Copy the current file's directory to clipboard
+end, { desc = "Copy the current file's directory to clipboard" })
 
 -- Function to format JSON in the current buffer
 vim.keymap.set('v', '<leader>jf', function()
@@ -54,4 +55,4 @@ vim.keymap.set('v', '<leader>jf', function()
   pretty_json = vim.fn.system("jq '.'", pretty_json)
 
   vim.api.nvim_buf_set_lines(0, start_pos[1] - 1, end_pos[1], false, vim.split(pretty_json, '\n'))
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true, desc = "Format JSON in the current buffer."})
