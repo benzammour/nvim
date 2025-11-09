@@ -1,0 +1,52 @@
+return {
+  'ThePrimeagen/harpoon',
+  branch = 'harpoon2',
+  dependencies = { 'nvim-lua/plenary.nvim' },
+  config = function()
+    local harpoon = require 'harpoon'
+    local list = harpoon:list()
+
+    harpoon.setup {
+      global_settings = {
+        save_on_toggle = true,
+        save_on_change = true,
+        enter_on_sendcmd = false,
+        tmux_autoclose_windows = false,
+        excluded_filetypes = { 'harpoon' },
+      },
+    }
+
+    -- Key mappings for Harpoon
+
+    -- Add file to Harpoon
+    vim.keymap.set('n', '<leader>a', function()
+      harpoon:list():add()
+    end, { desc = 'Add file to Harpoon' })
+
+    -- Toggle Harpoon menu
+    vim.keymap.set('n', '<C-e>', function()
+      harpoon.ui:toggle_quick_menu(harpoon:list())
+    end, { desc = 'Toggle Harpoon menu' })
+
+    vim.keymap.set('n', '<C-S-P>', function()
+      harpoon:list():prev()
+    end)
+    vim.keymap.set('n', '<C-S-N>', function()
+      harpoon:list():next()
+    end)
+
+    -- Harpoon file X
+    vim.keymap.set('n', '1', function()
+      list:select(1)
+    end, { desc = 'Go to Harpoon file 1' })
+    vim.keymap.set('n', '2', function()
+      list:select(2)
+    end, { desc = 'Go to Harpoon file 2' })
+    vim.keymap.set('n', '3', function()
+      list:select(3)
+    end, { desc = 'Go to Harpoon file 3' })
+    vim.keymap.set('n', '4', function()
+      list:select(4)
+    end, { desc = 'Go to Harpoon file 4' })
+  end,
+}
