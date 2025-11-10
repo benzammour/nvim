@@ -67,12 +67,3 @@ vim.opt.conceallevel = 1
 
 -- display diagnostic's even when not on affected line
 vim.diagnostic.config { virtual_text = true }
-
--- Highlight when yanking
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('s3mme-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})

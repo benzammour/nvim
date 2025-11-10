@@ -4,6 +4,16 @@ autocmd('VimEnter', {
   command = 'silent! cd %:p:h',
 })
 
+-- Highlight when yanking
+autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('s3mme-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+-- LSP options
 autocmd('LspAttach', {
   callback = function(e)
     vim.keymap.set('n', 'gd', function()
@@ -36,5 +46,44 @@ autocmd('LspAttach', {
     vim.keymap.set('n', ']d', function()
       vim.diagnostic.goto_prev()
     end, { buffer = e.buf, desc = 'Goto Previous diagnostic' })
+
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { desc = 'References', nowait = true })
+    vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { desc = 'Goto Implementation', nowait = true })
+    vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, { desc = 'Goto T[y]pe Definition', nowait = true })
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto Declaration', nowait = true })
+  end,
+})
+
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'PlenaryTestPopup',
+    'checkhealth',
+    'dbout',
+    'gitsigns-blame',
+    'grug-far',
+    'help',
+    'lspinfo',
+    'neotest-output',
+    'neotest-output-panel',
+    'neotest-summary',
+    'notify',
+    'qf',
+    'spectre_panel',
+    'startuptime',
+    'tsplayground',
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.schedule(function()
+      vim.keymap.set('n', 'q', function()
+        vim.cmd 'close'
+        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+      end, {
+        buffer = event.buf,
+        silent = true,
+        desc = 'Quit buffer',
+      })
+    end)
   end,
 })
