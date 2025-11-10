@@ -58,7 +58,7 @@ return {
         },
       }
 
-      ColorMyPencils 'tokyonight'
+      ColorMyPencils 'rose-pine'
     end,
   },
 }
