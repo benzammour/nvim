@@ -1,5 +1,5 @@
 local function createNoteWithDefaultTemplate()
-  local TEMPLATE_FILENAME = 'tmpl_basic'
+  local TEMPLATE_FILENAME = 'Template - Basic Note'
   local obsidian = require('obsidian').get_client()
   local utils = require 'obsidian.util'
 
@@ -49,7 +49,7 @@ return {
 
     notes_subdir = '00-Inbox',
     templates = {
-      folder = 'Templates/obsidian-nvim',
+      folder = '_templates/obsidian-app',
       date_format = '%Y-%m-%d',
       time_format = '%H:%M',
       substitutions = {},
