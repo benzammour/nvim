@@ -51,6 +51,10 @@ autocmd('LspAttach', {
     vim.keymap.set('n', 'gI', vim.lsp.buf.implementation, { desc = 'Goto Implementation', nowait = true })
     vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, { desc = 'Goto T[y]pe Definition', nowait = true })
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Goto Declaration', nowait = true })
+
+    vim.keymap.set('n', '<leader>cf', function()
+      require('telescope.builtin').lsp_document_symbols { symbols = 'function' }
+    end, { desc = 'List [F]unctions', nowait = true })
   end,
 })
 
