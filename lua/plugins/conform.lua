@@ -18,6 +18,7 @@ return { -- Autoformat
 
         -- List of available filetypes for selection
         local filetypes = {
+          'bash',
           'c',
           'cpp',
           'golang',
@@ -56,6 +57,7 @@ return { -- Autoformat
   opts = {
     notify_on_error = false,
     formatters_by_ft = {
+      bash = { 'beautysh' },
       c = { 'clang_format' },
       cpp = { 'clang_format' },
       lua = { 'stylua' },
